@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion News</title>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+        .card {
+            width: 250px;
+            height: 350px;
+            perspective: 1000px;
+        }
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front,
+        .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        .card-front {
+            background-color: white;
+        }
+        .card-front img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .card-front h3 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        .card-front p {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #777;
+        }
+        .button, .back-btn {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .button:hover, .back-btn:hover {
+            background-color: #0056b3;
+        }
+        .card-back {
+            background-color: #007bff;
+            color: white;
+            transform: rotateY(180deg);
+        }
+        .card-back p {
+            font-size: 16px;
+            padding: 10px;
+        }
+    </style>
+    <div class="container"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.querySelector(".container");
+            
+            const newsData = [
+    { 
+        "title": "Global Markets Show Signs of Recovery", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Stock markets rebound after months of instability.", 
+        "details": "Major global stock indices are seeing positive growth as economic confidence slowly returns." 
+    },
+    { 
+        "title": "UN Calls for Immediate Ceasefire in Conflict Zones", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "The UN urges warring nations to halt violence.", 
+        "details": "Amid escalating conflicts, the United Nations has called for an urgent ceasefire and diplomatic resolutions." 
+    },
+    { 
+        "title": "Tech Giants Announce Breakthrough AI Innovations", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Major companies unveil advanced AI technology.", 
+        "details": "Global technology firms have introduced next-gen artificial intelligence models, revolutionizing industries." 
+    },
+    { 
+        "title": "Global Climate Summit Concludes with New Agreements", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "World leaders agree on measures to combat climate change.", 
+        "details": "Countries have pledged to reduce carbon emissions and invest in renewable energy solutions." 
+    },
+    { 
+        "title": "SpaceX Successfully Launches New Space Mission", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "SpaceX completes another successful launch.", 
+        "details": "Elon Musk’s space company has launched a new mission focused on space exploration and satellite deployment." 
+    },
+    { 
+        "title": "World Bank Predicts Slower Global Economic Growth", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Economic growth is expected to decelerate worldwide.", 
+        "details": "The World Bank has warned that global economic expansion may slow due to inflation and geopolitical tensions." 
+    },
+    { 
+        "title": "Scientists Discover New Planet in Habitable Zone", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "A new exoplanet could support life, scientists say.", 
+        "details": "Astronomers have detected a planet in a distant star system that could potentially sustain human life." 
+    },
+    { 
+        "title": "Olympics Preparations in Full Swing for 2024 Games", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Host nation finalizes preparations for the Olympics.", 
+        "details": "With months to go until the 2024 Olympics, organizers are making final arrangements for the global event." 
+    },
+    { 
+        "title": "Breakthrough in Cancer Treatment Announced", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Scientists reveal a major advancement in cancer therapy.", 
+        "details": "A new treatment method has shown promising results in targeting and eliminating cancer cells." 
+    },
+    { 
+        "title": "Major Earthquake Strikes South America", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "A powerful earthquake causes widespread damage.", 
+        "details": "Emergency teams have been deployed following a major earthquake that struck parts of South America." 
+    },
+    { 
+        "title": "Electric Vehicle Market Booms Worldwide", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "EV sales surge as countries push for green energy.", 
+        "details": "Governments and automakers are accelerating the transition to electric vehicles with new policies and incentives." 
+    },
+    { 
+        "title": "Global Tourism Rebounds After Pandemic", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "International travel surges as restrictions ease.", 
+        "details": "Popular tourist destinations report record numbers of visitors as global tourism makes a strong comeback." 
+    },
+    { 
+        "title": "Tech Industry Faces Massive Layoffs", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Tech firms announce job cuts amid economic downturn.", 
+        "details": "Several major technology companies have laid off thousands of employees in response to financial pressures." 
+    },
+    { 
+        "title": "World Leaders Discuss Cybersecurity Threats", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Nations unite to combat growing cyber threats.", 
+        "details": "Governments are increasing efforts to strengthen cybersecurity measures to protect businesses and individuals." 
+    },
+    { 
+        "title": "Amazon Rainforest Sees Record Deforestation Rates", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Environmentalists raise concerns over deforestation.", 
+        "details": "Recent data shows that the Amazon rainforest is being destroyed at an alarming rate, sparking global concern." 
+    },
+    { 
+        "title": "Hollywood Actors Reach Agreement to End Strike", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Film industry back on track after months-long strike.", 
+        "details": "After lengthy negotiations, Hollywood actors and studios have reached a deal to resume film and TV production." 
+    },
+    { 
+        "title": "World Cup 2026 Preparations Begin", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Host nations gear up for the next FIFA World Cup.", 
+        "details": "Preparations for the 2026 FIFA World Cup, set to be held in North America, are now in full swing." 
+    },
+    { 
+        "title": "Global Oil Prices Fluctuate Amid Market Uncertainty", 
+        "image": "https://via.placeholder.com/250x150", 
+        "shortDescription": "Oil prices rise and fall due to geopolitical tensions.", 
+        "details": "Energy markets remain unstable as major oil-producing nations adjust their production levels." 
+    }
+]
+         
+            for (let i = 0; i < 18; i++) {
+                const news = newsData[i % newsData.length];
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="${news.image}" alt="Image ${i + 1}">
+                            <h3>${news.title}</h3>
+                            <p>${news.shortDescription}</p>
+                            <button class="button">View Details</button>
+                        </div>
+                        <div class="card-back">
+                            <p>${news.details}</p>
+                            <button class="back-btn">Back</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+                card.querySelector(".button").addEventListener("click", function() {
+                    card.classList.add("flipped");
+                });
+                card.querySelector(".back-btn").addEventListener("click", function() {
+                    card.classList.remove("flipped");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

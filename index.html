@@ -6,13 +6,179 @@
     <title>Fashion News</title>
 </head>
 <body>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+<style>
+
+    /* ======= MAIN NAVIGATION ======= */
+    .main-nav {
+        background-color: #012149;
+          display: flex;
+        justify-content: center;
+
+
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ddd;
+   position: fixed; /* Make the navbar fixed */
+    top: 0; /* Stick it to the top */
+    left: 0;
+    width: 100%; /* Ensure it spans full width */
+    z-index: 1000; /* Keep it above other elements */
+
+    }
+    
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        max-width: 1200px;
+        
+    }
+    
+    /* Navigation Links */
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+        
+    }
+    
+    .nav-links li {
+        font-size: 25px;
+        font-weight: bold;
+    }
+    
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        padding: 5px;
+        transition: 0.3s;
+    }
+    
+    .nav-links .active a {
+        border-bottom: 4px solid #ff4d00;
+    }
+    
+    .nav-links a:hover {
+        color: #ffcc00;
+    }
+    
+    /* ======= LOGO ======= */
+    .logo {
+        font-size: 75px;
+        color: white;
+        font-weight: bold;
+        text-align: right;
+    }
+    
+    /* ======= HAMBURGER MENU (MOBILE) ======= */
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+    }
+    
+    /* ======= SUB NAVIGATION ======= */
+    .sub-nav {
+        background-color: #003366;
+        padding: 10px 20px;
+        font-size: 35px;
+
+
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    position: fixed; /* Make the navbar fixed */
+    top: 0; /* Stick it to the top */
+    left: 0;
+    width: 100%; /* Ensure it spans full width */
+    z-index: 1000; /* Keep it above other elements */
+    margin-top: 15vh;
+
+    }
+    
+    .sub-nav ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+    }
+    
+    .sub-nav a {
+        text-decoration: none;
+        color: white;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+    
+    .sub-nav a:hover {
+        color: #ffcc00;
+    }
+    
+    /* ======= RESPONSIVE DESIGN ======= */
+    @media (max-width: 768px) {
+        .main-nav {
+       
+            background-color: #012149;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+
+    }
+    
+      .sub-nav {
+        background-color: #003366;
+        padding: 10px 20px;
+        font-size: 35px;
+        margin: -1.5vh;
+        margin-top: 12vh;
         }
+    .logo {
+    font-size: 38px;
+    }
+        
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background: #002e69;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+        }
+    
+        .nav-links.show {
+            display: flex;
+        }
+    
+        .menu-toggle {
+            display: block;
+        }
+    
+        .sub-nav ul {
+            flex-direction: row;
+            text-align: left;
+            font-size: 1px;
+        }
+    }
+ 
+  
+
+
         body {
             display: flex;
             justify-content: center;
@@ -25,18 +191,21 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 20px;
+            margin-top: 18vh;
             width: 90%;
             max-width: 1200px;
+            margin-left: 16vh;
         }
         @media (max-width: 600px) {
             .container {
                 grid-template-columns: repeat(1, 1fr);
-            }
+                 margin-left: 14vh;}
         }
         .card {
             width: 250px;
             height: 350px;
             perspective: 1000px;
+            margin-top: 10vh;
         }
         .card-inner {
             width: 100%;
@@ -82,7 +251,7 @@
             font-size: 14px;
             color: #777;
         }
-        .button, .back-btn {
+        .flip-btn, .back-btn {
             margin-top: 10px;
             padding: 8px 12px;
             border: none;
@@ -93,7 +262,7 @@
             border-radius: 5px;
             transition: background 0.3s;
         }
-        .button:hover, .back-btn:hover {
+        .flip-btn:hover, .back-btn:hover {
             background-color: #0056b3;
         }
         .card-back {
@@ -105,124 +274,179 @@
             font-size: 16px;
             padding: 10px;
         }
+
+    span{
+        color: red;
+    }
+spann{
+    color:rgb(235, 158, 87)}
     </style>
-    <div class="container"></div>
+<nav class="main-nav">
+    <div class="nav-container">
+        <ul class="nav-links">
+            <li class="active"><a href="#">News</a></li>
+            <li><a href="#">Opiniofusan</a></li>
+            <li><a href="https://nouman007pro.github.io/viora4-sports/">Sport</a></li>
+            <li><a href="">Culture</a></li>
+            <li><a href="">Lifestyle</a></li>
+        </ul>
+        <flip-btn class="menu-toggle" onclick="toggleMenu()">☰</flip-btn>
+        <div class="logo">Viora<span>4</span></div>
+    </div>
+</nav>
+
+<!-- Sub Navigation -->
+<nav class="main-nav">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li class="active"><a href="#">News</a></li>
+               <li><a href="https://nouman007pro.github.io/viora4-sports/">Sport</a></li>
+            <li><a href="https://nouman007pro.github.io/viora4-fashion/">Lifestyle</a></li>
+            <li><a href="https://nouman007pro.github.io/viora4-blogs/">Blogs</a></li>
+
+            </ul>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <div class="logo">Viora<span>4</span></div>
+        </div>
+    </nav>
+
+    <!-- Sub Navigation -->
+    <nav class="sub-nav">
+        <ul>
+            <li><a href="https://nouman007pro.github.io/viora4-worldnews/">World</a></li>
+            <li><a href="https://nouman007pro.github.io/viora4-usa/">US Politics</a></li>
+            <li><a href="https://nouman007pro.github.io/viora4-uk/">UK</a></li></li>
+            <li><a href="https://nouman007pro.github.io/viora4-climatecrisis/">Climate Crisis</a></li>
+            <li><a href="https://nouman007pro.github.io/viora4-middleeast/"><spann>Middle East</spann></a></li>
+            <li><a href="https://nouman007pro.github.io/viora4-fashion/">Lifestyle</a></li>
+            <li><a href="https://nouman007pro.github.io/viora4-sports/">Sport</a></li>
+<li><a href="https://nouman007pro.github.io/viora.github.io/">Latest</a></li>
+
+        </ul>
+    </nav>
+
+<div class="container"></div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.querySelector(".container");
             
-            const newsData = [
+            const newsData = 
+            
+            
+            
+            [
     { 
         "title": "Global Markets Show Signs of Recovery", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/1.png", 
         "shortDescription": "Stock markets rebound after months of instability.", 
         "details": "Major global stock indices are seeing positive growth as economic confidence slowly returns." 
     },
     { 
         "title": "UN Calls for Immediate Ceasefire in Conflict Zones", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/2.png", 
         "shortDescription": "The UN urges warring nations to halt violence.", 
         "details": "Amid escalating conflicts, the United Nations has called for an urgent ceasefire and diplomatic resolutions." 
     },
     { 
         "title": "Tech Giants Announce Breakthrough AI Innovations", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/3.png", 
         "shortDescription": "Major companies unveil advanced AI technology.", 
         "details": "Global technology firms have introduced next-gen artificial intelligence models, revolutionizing industries." 
     },
     { 
         "title": "Global Climate Summit Concludes with New Agreements", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/4.png", 
         "shortDescription": "World leaders agree on measures to combat climate change.", 
         "details": "Countries have pledged to reduce carbon emissions and invest in renewable energy solutions." 
     },
     { 
         "title": "SpaceX Successfully Launches New Space Mission", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/5.png", 
         "shortDescription": "SpaceX completes another successful launch.", 
         "details": "Elon Musk’s space company has launched a new mission focused on space exploration and satellite deployment." 
     },
     { 
         "title": "World Bank Predicts Slower Global Economic Growth", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/6.png", 
         "shortDescription": "Economic growth is expected to decelerate worldwide.", 
         "details": "The World Bank has warned that global economic expansion may slow due to inflation and geopolitical tensions." 
     },
     { 
         "title": "Scientists Discover New Planet in Habitable Zone", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/7.png", 
         "shortDescription": "A new exoplanet could support life, scientists say.", 
         "details": "Astronomers have detected a planet in a distant star system that could potentially sustain human life." 
     },
     { 
         "title": "Olympics Preparations in Full Swing for 2024 Games", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/8.png", 
         "shortDescription": "Host nation finalizes preparations for the Olympics.", 
         "details": "With months to go until the 2024 Olympics, organizers are making final arrangements for the global event." 
     },
     { 
         "title": "Breakthrough in Cancer Treatment Announced", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/9.png", 
         "shortDescription": "Scientists reveal a major advancement in cancer therapy.", 
         "details": "A new treatment method has shown promising results in targeting and eliminating cancer cells." 
     },
     { 
         "title": "Major Earthquake Strikes South America", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/10.png", 
         "shortDescription": "A powerful earthquake causes widespread damage.", 
         "details": "Emergency teams have been deployed following a major earthquake that struck parts of South America." 
     },
     { 
         "title": "Electric Vehicle Market Booms Worldwide", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/11.png", 
         "shortDescription": "EV sales surge as countries push for green energy.", 
         "details": "Governments and automakers are accelerating the transition to electric vehicles with new policies and incentives." 
     },
     { 
         "title": "Global Tourism Rebounds After Pandemic", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/12.png", 
         "shortDescription": "International travel surges as restrictions ease.", 
         "details": "Popular tourist destinations report record numbers of visitors as global tourism makes a strong comeback." 
     },
     { 
         "title": "Tech Industry Faces Massive Layoffs", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/1.png", 
         "shortDescription": "Tech firms announce job cuts amid economic downturn.", 
         "details": "Several major technology companies have laid off thousands of employees in response to financial pressures." 
     },
     { 
         "title": "World Leaders Discuss Cybersecurity Threats", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/1.png", 
         "shortDescription": "Nations unite to combat growing cyber threats.", 
         "details": "Governments are increasing efforts to strengthen cybersecurity measures to protect businesses and individuals." 
     },
     { 
         "title": "Amazon Rainforest Sees Record Deforestation Rates", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/1.png", 
         "shortDescription": "Environmentalists raise concerns over deforestation.", 
         "details": "Recent data shows that the Amazon rainforest is being destroyed at an alarming rate, sparking global concern." 
     },
     { 
         "title": "Hollywood Actors Reach Agreement to End Strike", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/1.png", 
         "shortDescription": "Film industry back on track after months-long strike.", 
         "details": "After lengthy negotiations, Hollywood actors and studios have reached a deal to resume film and TV production." 
     },
     { 
         "title": "World Cup 2026 Preparations Begin", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/1.png", 
         "shortDescription": "Host nations gear up for the next FIFA World Cup.", 
         "details": "Preparations for the 2026 FIFA World Cup, set to be held in North America, are now in full swing." 
     },
     { 
         "title": "Global Oil Prices Fluctuate Amid Market Uncertainty", 
-        "image": "https://via.placeholder.com/250x150", 
+        "image": "img/1.png", 
         "shortDescription": "Oil prices rise and fall due to geopolitical tensions.", 
         "details": "Energy markets remain unstable as major oil-producing nations adjust their production levels." 
     }
 ]
          
-            for (let i = 0; i < 18; i++) {
+
+            for (let i = 0; i < 12; i++) {
                 const news = newsData[i % newsData.length];
                 const card = document.createElement("div");
                 card.classList.add("card");
@@ -232,16 +456,18 @@
                             <img src="${news.image}" alt="Image ${i + 1}">
                             <h3>${news.title}</h3>
                             <p>${news.shortDescription}</p>
-                            <button class="button">View Details</button>
+                            <flip-btn class="flip-btn">       <svg width="180px" height="60px" viewBox="0 0 180 60">
+                        <polyline points="179,1 179,59 1,59 1,1 179,1" />
+                    </svg>View Details</flip-btn>
                         </div>
                         <div class="card-back">
                             <p>${news.details}</p>
-                            <button class="back-btn">Back</button>
+                            <flip-btn class="back-btn">Back</flip-btn>
                         </div>
                     </div>
                 `;
                 container.appendChild(card);
-                card.querySelector(".button").addEventListener("click", function() {
+                card.querySelector(".flip-btn").addEventListener("click", function() {
                     card.classList.add("flipped");
                 });
                 card.querySelector(".back-btn").addEventListener("click", function() {
@@ -249,6 +475,44 @@
                 });
             }
         });
-    </script>
+    </script><style>  .flip-btn {
+            width: 180px;
+            height: 60px;
+            cursor: pointer;
+            background:#012149 ;
+            border: 1px solid #91C9FF;
+            outline: none;
+            transition: 1s ease-in-out;
+            position: relative;
+            color: #eceff3;
+        }
+
+        svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            fill: none;
+            stroke: #fff;
+            stroke-dasharray: 150 480;
+            stroke-dashoffset: 150;
+            transition: 1s ease-in-out;
+        }
+
+        .flip-btn:hover {
+            background: #4F95DA;
+        }
+
+        .flip-btn:hover svg {
+            stroke-dashoffset: -480;
+        }
+
+        .flip-btn span {
+            color: white;
+            font-size: 18px;
+            font-weight: 100;
+        }
+    </style>
+
+
 </body>
 </html>
